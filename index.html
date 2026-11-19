@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreedyLab — DAA Greedy Algorithm Visualizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo">G</span><div><b>GreedyLab</b><small>DAA Interactive Learning</small></div></div>
+  <nav>
+    <a href="#learn">Learn</a><a href="#visualizer">Visualizer</a><a href="#quiz">Quiz</a>
+    <button id="themeBtn" class="icon-btn" title="Toggle theme">☾</button>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <div>
+    <span class="pill">DESIGN & ANALYSIS OF ALGORITHMS</span>
+    <h1>Master <span>Greedy Algorithms</span><br>by seeing them work.</h1>
+    <p>Learn the complete Greedy Algorithm chapter and run your own inputs through animated, step-by-step visualizations.</p>
+    <div class="hero-actions"><a class="btn primary" href="#visualizer">Start Visualizing →</a><a class="btn ghost" href="#learn">Explore Chapter</a></div>
+  </div>
+  <div class="hero-card">
+    <div class="mini-title">Greedy Strategy</div>
+    <div class="strategy">
+      <div class="node active">Choose<br><small>best local option</small></div>
+      <div class="arrow">→</div><div class="node">Check<br><small>feasibility</small></div>
+      <div class="arrow">→</div><div class="node">Commit<br><small>to choice</small></div>
+    </div>
+    <div class="formula">Local optimum → Global optimum <span>when the greedy property holds</span></div>
+  </div>
+</section>
+
+<section id="learn" class="section">
+  <div class="section-head"><div><span class="eyebrow">CHAPTER</span><h2>Greedy Algorithms — Complete Notes</h2></div></div>
+  <div class="cards">
+    <article class="card"><h3>01 · What is Greedy?</h3><p>A greedy algorithm builds a solution step by step by choosing the best available local option at every stage, without reconsidering previous choices.</p><div class="codebox">while solution is not complete:<br>&nbsp;&nbsp;choose best candidate<br>&nbsp;&nbsp;if feasible → accept it</div></article>
+    <article class="card"><h3>02 · Greedy Choice Property</h3><p>A globally optimal solution can be reached by making a locally optimal choice first, then solving the remaining subproblem.</p></article>
+    <article class="card"><h3>03 · Optimal Substructure</h3><p>After a greedy choice, the remaining problem must contain an optimal solution to the original problem.</p></article>
+    <article class="card"><h3>04 · When Greedy Works</h3><p>Greedy is correct only when the problem has the required greedy-choice property and optimal substructure. It is not a universal replacement for DP.</p></article>
+    <article class="card"><h3>05 · Advantages</h3><ul><li>Usually simple to design</li><li>Often fast and memory efficient</li><li>Natural step-by-step implementation</li><li>Excellent for many optimization problems</li></ul></article>
+    <article class="card"><h3>06 · Limitations</h3><ul><li>Local best may not be globally best</li><li>Correctness needs proof</li><li>Some problems need DP/backtracking</li><li>Choice cannot always be undone</li></ul></article>
+  </div>
+  <div class="compare">
+    <h3>Greedy vs Dynamic Programming</h3>
+    <table><thead><tr><th>Feature</th><th>Greedy</th><th>Dynamic Programming</th></tr></thead><tbody>
+    <tr><td>Choice</td><td>Best local choice</td><td>Compares subproblem alternatives</td></tr>
+    <tr><td>Reconsider choices?</td><td>Usually no</td><td>Yes, through stored states</td></tr>
+    <tr><td>Memory</td><td>Often lower</td><td>Often higher</td></tr>
+    <tr><td>Typical examples</td><td>Activity Selection, Kruskal, Prim, Huffman</td><td>0/1 Knapsack, LCS, Matrix Chain</td></tr>
+    </tbody></table>
+  </div>
+</section>
+
+<section id="visualizer" class="section visualizer-section">
+  <div class="section-head"><div><span class="eyebrow">INTERACTIVE LAB</span><h2>Run the Algorithms</h2></div><div class="status" id="status">Ready</div></div>
+  <div class="lab">
+    <aside class="sidebar">
+      <label for="algoSelect">Choose Algorithm</label>
+      <select id="algoSelect">
+        <option value="activity">Activity Selection</option>
+        <option value="knapsack">Fractional Knapsack</option>
+        <option value="jobs">Job Sequencing with Deadlines</option>
+        <option value="coin">Coin Change (Greedy)</option>
+        <option value="prim">Prim's MST</option>
+        <option value="kruskal">Kruskal's MST</option>
+        <option value="dijkstra">Dijkstra's Shortest Path</option>
+        <option value="huffman">Huffman Coding</option>
+      </select>
+      <div id="description" class="side-info"></div>
+      <div class="speed-wrap"><label>Animation Speed</label><input id="speed" type="range" min="150" max="1600" value="700"><div><span>Fast</span><span>Slow</span></div></div>
+    </aside>
+    <div class="workspace">
+      <div id="inputPanel" class="input-panel"></div>
+      <div class="controls">
+        <button id="runBtn" class="btn primary">▶ Run Algorithm</button>
+        <button id="pauseBtn" class="btn ghost">Ⅱ Pause</button>
+        <button id="nextBtn" class="btn ghost">Next Step →</button>
+        <button id="resetBtn" class="btn ghost">↻ Reset</button>
+      </div>
+      <div class="stepbar"><div id="progress"></div></div>
+      <div class="step-info"><b id="stepTitle">Waiting for input</b><span id="stepCount">Step 0 / 0</span></div>
+      <div id="canvas" class="canvas"></div>
+      <div class="explanation" id="explanation">Choose an algorithm and press <b>Run Algorithm</b>. The visualization will explain each decision.</div>
+      <div class="result-grid"><div class="result-card"><small>RESULT</small><strong id="result">—</strong></div><div class="result-card"><small>TIME</small><strong id="time">—</strong></div><div class="result-card"><small>SPACE</small><strong id="space">—</strong></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reference">
+  <span class="eyebrow">QUICK REFERENCE</span><h2>Algorithm Complexity</h2>
+  <table><thead><tr><th>Algorithm</th><th>Greedy Rule</th><th>Typical Time</th><th>Space</th></tr></thead><tbody>
+  <tr><td>Activity Selection</td><td>Earliest finish time</td><td>O(n log n)</td><td>O(n)</td></tr>
+  <tr><td>Fractional Knapsack</td><td>Highest profit/weight</td><td>O(n log n)</td><td>O(n)</td></tr>
+  <tr><td>Job Sequencing</td><td>Highest profit first</td><td>O(n log n + nD)</td><td>O(D)</td></tr>
+  <tr><td>Prim</td><td>Minimum crossing edge</td><td>O(V²) / O(E log V)</td><td>O(V)</td></tr>
+  <tr><td>Kruskal</td><td>Smallest edge without cycle</td><td>O(E log E)</td><td>O(V)</td></tr>
+  <tr><td>Dijkstra</td><td>Nearest unsettled vertex</td><td>O(V²) / O(E log V)</td><td>O(V)</td></tr>
+  <tr><td>Huffman</td><td>Combine two least frequencies</td><td>O(n log n)</td><td>O(n)</td></tr>
+  </tbody></table>
+</section>
+
+<section id="quiz" class="section quiz-section">
+  <span class="eyebrow">SELF TEST</span><h2>Greedy Quiz</h2>
+  <div id="quizBox"></div><button id="submitQuiz" class="btn primary">Check Answers</button><span id="quizScore"></span>
+</section>
+</main>
+<footer>GreedyLab · DAA Learning Tool · Built with HTML, CSS & JavaScript</footer>
+<script src="script.js"></script>
+</body>
+</html>
